@@ -12,20 +12,29 @@ apt-get install python3-pip
 ```
 
 Далее необходимо установить все необходимые для проекта библиотеки
-```pip3 install -r requirements.txt```
+```pip3 install -r requirements.txt
+```
 
 Теперь нам необходимо установить nginx
-```apt install nginx```
-Вызываем команду
-```cd flask_project```
-```nano /etc/nginx/sites-enabled/flask_project```
+```apt install nginx
+```
+Необходимо перейти в папку проекта и выполнить несколько команд.
+```cd flask_project
+nano /etc/nginx/sites-enabled/flask_project
+```
 И записываем внутрь данные из файла nginx_settings
-Далее ```unlink /etc/nginx/sites-enabled/default```
-И обновляем данные ```nginx -s reload```
+Далее 
+```unlink /etc/nginx/sites-enabled/default
+```
+И обновляем данные 
+```nginx -s reload
+```
 После этого нам необходимо установить gunicorn
-```apt-get install gunicorn```
-И наконец запускаем 3 отдельных процесса
-```gunicorn -w 3 flask_project:app```
+```apt-get install gunicorn
+```
+И наконец запускаем 3 отдельных процесса. Это необходимо делать в папке в которой лежит папка с проектом.
+```gunicorn -w 3 -b 0.0.0.8080 flask_project:app
+```
 И после этого мы можем посылать запросы к данному сервису
 
 ## Тестирование
